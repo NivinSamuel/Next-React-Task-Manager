@@ -4,7 +4,7 @@ import Sidebar from "./Components/Sidebar/Sidebar";
 import "./globals.css";
 import ContextProvider from "./providers/ContextProvider";
 import GlobalStyleProvider from "./providers/GlobalStyleProvider";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,31 +15,30 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}:{
   children: React.ReactNode;
-}>) {
+}) {
   return (
-  <ClerkProvider>
-    <html lang="en">
-      <head>
-      <link
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
             integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
             crossOrigin="anonymous"
             referrerPolicy="no-referrer"
           />
-      </head>
-      <body className={inter.className}>
-        <ContextProvider>
-        <GlobalStyleProvider>
-            <Sidebar/>
-            <div className="w-full">{children}</div>
-        </GlobalStyleProvider>
-        </ContextProvider>
-      </body>
-
-    </html>
-  </ClerkProvider>
+        </head>
+        <body className={inter.className}>
+          <ContextProvider>
+            <GlobalStyleProvider>
+              <Sidebar />
+              <div className="w-full">{children}</div>
+            </GlobalStyleProvider>
+          </ContextProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
